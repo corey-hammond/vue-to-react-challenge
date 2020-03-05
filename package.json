@@ -1,0 +1,26 @@
+{
+  "name": "vue-to-react-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corey-hammond/vue-to-react-challenge.git"
+  },
+  "author": "Corey Hammond",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/corey-hammond/vue-to-react-challenge/issues"
+  },
+  "homepage": "https://github.com/corey-hammond/vue-to-react-challenge#readme",
+  "dependencies": {
+    "next": "^9.2.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  }
+}
