@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Link from "next/link";
 import jsonData from "../public/checklist.json";
 import Layout from "../components/Layout";
 
@@ -33,8 +34,7 @@ class Index extends Component {
   render() {
     const completed = this.state.checklist.filter(item => item.complete);
     const finished = this.state.checklist.length == completed.length;
-
-    const status = finished ? <div>Finished</div> : <div>Not finished</div>;
+    const counter = completed.length;
 
     return (
       <Layout>
@@ -55,7 +55,7 @@ class Index extends Component {
               return (
                 <li
                   key={item.id}
-                  className={`${item.complete ? "complete" : ""}`}
+                  className={`task ${item.complete ? "complete" : ""}`}
                   onClick={() => this.handleCompleted(idx)}
                 >
                   {item.message}
@@ -65,11 +65,44 @@ class Index extends Component {
           </ul>
 
           {/* Status */}
-          {status}
+          {!finished ? (
+            <div className="status">Complete {counter}/8</div>
+          ) : (
+            <div className="status">
+              That's it!{" "}
+              <Link href="/submit">
+                <a>Here's how to submit your work.</a>
+              </Link>
+            </div>
+          )}
 
           <style jsx>{`
+            --green: #009c4b;
+
+            p {
+              margin-top: 10px;
+            }
+
+            .tasks {
+              margin-top: 20px;
+            }
+
+            .task {
+              margin-top: 5px;
+              padding: 2px 6px;
+              cursor: pointer;
+              opacity: 0.8;
+              transition opacity, background, color
+              transition-duration 0.2s
+            }
+
             .complete {
-              color: red;
+              color: var(--green);
+            }
+
+            .status {
+              font-weight: 700;
+              margin-top: 20px;
             }
           `}</style>
         </section>

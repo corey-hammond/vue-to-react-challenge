@@ -20,11 +20,10 @@ html {
 
 a {
   color: grey;
-  transition: color 0.2s;
 }
 
 a:hover {
-  color: red;
+  color: var(--red);
 }
 
 /* Fade in and out */
