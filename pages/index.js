@@ -67,32 +67,10 @@ class Index extends Component {
             })}
           </ul>
 
-          {/* Status */}
-
-          {/* {!finished ? (
-            <CSSTransition
-              in={true}
-              appear={true}
-              timeout={2000}
-              classNames="fade"
-            >
-              <Status counter={counter} />
-            </CSSTransition>
-          ) : (
-            <CSSTransition
-              in={true}
-              appear={true}
-              timeout={2000}
-              classNames="fade"
-            >
-              <Complete />
-            </CSSTransition>
-          )} */}
-
           <CSSTransition
-            in={true}
+            in={this.state.transition}
             appear={true}
-            timeout={2000}
+            timeout={400}
             classNames="fade"
           >
             {!finished ? <Status counter={counter} /> : <Complete />}
