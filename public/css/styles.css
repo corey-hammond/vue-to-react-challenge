@@ -20,6 +20,7 @@ html {
 
 a {
   color: grey;
+  transition: color 0.2s;
 }
 
 a:hover {

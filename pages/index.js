@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Link from "next/link";
-import jsonData from "../public/checklist.json";
+import jsonData from "../public/data/checklist.json";
 import Layout from "../components/Layout";
+import Status from "../components/Status";
 
 class Index extends Component {
   state = {
@@ -10,13 +10,13 @@ class Index extends Component {
 
   static async getInitialProps(ctx) {
     const data = await jsonData.map((msg, idx) => {
-      const container = {
+      const task = {
         id: idx,
         message: msg,
         complete: false
       };
 
-      return container;
+      return task;
     });
 
     return {
@@ -32,7 +32,7 @@ class Index extends Component {
   };
 
   render() {
-    const completed = this.state.checklist.filter(item => item.complete);
+    const completed = this.state.checklist.filter(task => task.complete);
     const finished = this.state.checklist.length == completed.length;
     const counter = completed.length;
 
@@ -51,31 +51,22 @@ class Index extends Component {
 
           {/* Tasks */}
           <ul className="tasks">
-            {this.state.checklist.map((item, idx) => {
+            {this.state.checklist.map((task, idx) => {
               return (
                 <li
-                  key={item.id}
-                  className={`task ${item.complete ? "complete" : ""}`}
+                  key={task.id}
+                  className={`task ${task.complete ? "complete" : ""}`}
                   onClick={() => this.handleCompleted(idx)}
                 >
-                  {item.message}
+                  {task.message}
                 </li>
               );
             })}
           </ul>
 
           {/* Status */}
-          {!finished ? (
-            <div className="status">Complete {counter}/8</div>
-          ) : (
-            <div className="status">
-              That's it!{" "}
-              <Link href="/submit">
-                <a>Here's how to submit your work.</a>
-              </Link>
-            </div>
-          )}
-
+          <Status finished={finished} counter={counter} />
+          
           <style jsx>{`
             --green: #009c4b;
 
@@ -92,17 +83,17 @@ class Index extends Component {
               padding: 2px 6px;
               cursor: pointer;
               opacity: 0.8;
-              transition opacity, background, color
-              transition-duration 0.2s
+              transition: opacity, background, color;
+              transition-duration: 0.2s;
+            }
+
+            .task:not(.complete):hover {
+              background: rgba(0, 156, 75, 0.2);
             }
 
             .complete {
+              opacity: 0.25;
               color: var(--green);
-            }
-
-            .status {
-              font-weight: 700;
-              margin-top: 20px;
             }
           `}</style>
         </section>

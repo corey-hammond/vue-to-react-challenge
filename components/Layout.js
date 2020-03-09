@@ -4,7 +4,7 @@ import Head from "next/head";
 const Layout = props => (
   <div className="layout">
     <Head>
-      <title>Bukwild Vue → React Test</title>
+      <title>Bukwild Vue &rarr; React Test</title>
       <link rel="stylesheet" href="css/styles.css" />
     </Head>
 
