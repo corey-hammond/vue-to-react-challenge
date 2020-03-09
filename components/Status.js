@@ -1,9 +1,10 @@
 import React from "react";
-import Link from "next/link";
 
 const Status = props => (
   <div>
-    {!props.finished ? (
+    <div className="status">Complete {props.counter}/8</div>
+
+    {/* {!props.finished ? (
       <div className="status">Complete {props.counter}/8</div>
     ) : (
       <div className="status">
@@ -12,7 +13,7 @@ const Status = props => (
           <a>Here's how to submit your work.</a>
         </Link>
       </div>
-    )}
+    )} */}
 
     <style jsx>{`
       .status {

@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import { CSSTransition } from "react-transition-group";
 import jsonData from "../public/data/checklist.json";
 import Layout from "../components/Layout";
 import Status from "../components/Status";
+import Complete from "../components/Complete";
 
 class Index extends Component {
   state = {
-    checklist: this.props.data
+    checklist: this.props.data,
+    transition: true
   };
 
   static async getInitialProps(ctx) {
@@ -65,8 +68,36 @@ class Index extends Component {
           </ul>
 
           {/* Status */}
-          <Status finished={finished} counter={counter} />
-          
+
+          {/* {!finished ? (
+            <CSSTransition
+              in={true}
+              appear={true}
+              timeout={2000}
+              classNames="fade"
+            >
+              <Status counter={counter} />
+            </CSSTransition>
+          ) : (
+            <CSSTransition
+              in={true}
+              appear={true}
+              timeout={2000}
+              classNames="fade"
+            >
+              <Complete />
+            </CSSTransition>
+          )} */}
+
+          <CSSTransition
+            in={true}
+            appear={true}
+            timeout={2000}
+            classNames="fade"
+          >
+            {!finished ? <Status counter={counter} /> : <Complete />}
+          </CSSTransition>
+
           <style jsx>{`
             --green: #009c4b;
 
